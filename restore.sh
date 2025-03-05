@@ -12,7 +12,7 @@ DATA_FILE="cockroach_data.sql"
 TABLE_NAME="mock_data"  # Change this if your table name is different
 
 # Database credentials
-DB_URL="postgresql://abhinav:Vow-PSVyraRN20fJMG4X%2DA@testy-wallaby-8738.j77.aws-ap-south-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full"
+DB_URL="<ENTER_DB_CONNECTION_URL>"
 
 # Extract the compressed backup
 echo "Extracting backup file: $BACKUP_FILE..."
