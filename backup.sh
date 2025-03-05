@@ -1,7 +1,10 @@
+#!/bin/bash
+
 DB_URL="postgresql://abhinav:Vow-PSVyraRN20fJMG4X%2DA@testy-wallaby-8738.j77.aws-ap-south-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full"
 
 SCHEMA_FILE="cockroach_schema.sql"
 DATA_FILE="cockroach_data.csv"
+COMPRESSED_FILE="backup.tar.gz"
 
 cockroach sql --url "$DB_URL" --execute "SELECT * FROM mock_data;" --format=csv > "$DATA_FILE"
 
@@ -39,6 +42,10 @@ EOF
 
 if [ $? -eq 0 ]; then
     echo "Backup successful: $SCHEMA_FILE & $DATA_FILE"
+    tar -czf "$COMPRESSED_FILE" "$SCHEMA_FILE"
+    rm "$SCHEMA_FILE"
+    rm "$DATA_FILE"
+    echo "SQL file compressed: $COMPRESSED_FILE"
 else
     echo "Backup failed!"
     exit 1
